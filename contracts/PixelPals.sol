@@ -35,6 +35,15 @@ contract PixelPals is ERC721, Ownable {
         return string(abi.encodePacked(baseURI, id.toString(), ".json"));
     }
 
+    /// Mint a few for the team and giveaways.
+    function reserve(address to, uint256 amount) external onlyOwner {
+        require(totalSupply + amount <= MAX_SUPPLY, "sold out");
+        for (uint256 i = 0; i < amount; i++) {
+            totalSupply++;
+            _safeMint(to, totalSupply);
+        }
+    }
+
     function setSaleActive(bool active) external onlyOwner { saleActive = active; }
     function setPrice(uint256 p) external onlyOwner { price = p; }
     function setBaseURI(string calldata uri) external onlyOwner { baseURI = uri; }

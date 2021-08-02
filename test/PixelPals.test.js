@@ -29,6 +29,12 @@ describe("PixelPals", function () {
       .to.be.revertedWith("not enough ETH");
   });
 
+  it("owner can reserve without paying", async () => {
+    await nft.reserve(alice.address, 3);
+    expect(await nft.balanceOf(alice.address)).to.equal(3);
+    await expect(nft.connect(alice).reserve(alice.address, 1)).to.be.revertedWith("Ownable: caller is not the owner");
+  });
+
   it("only owner can withdraw", async () => {
     await expect(nft.connect(alice).withdraw()).to.be.revertedWith("Ownable: caller is not the owner");
   });
