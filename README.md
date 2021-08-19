@@ -1,6 +1,6 @@
 # PixelPals NFT
 
-A generatvie 24x24 pixel-art NFT collection. I built it to learn Solidity during summer 2021.
+A generative 24x24 pixel-art NFT collection. I built it to learn Solidity during summer 2021.
 
 ## Develop
 
